@@ -7,10 +7,10 @@
 class DbConfig {
 
     private static $dbms = "mysql";
-    private static $host = 'www.mandywed.com';
-    private static $port = '3306';
+    private static $host = '127.0.0.1';
+    private static $port = '3306'
     private static $username = 'root';
-    private static $password = 'onlyzcx123';
+    private static $password = 'root';
     private static $dbname = 'db';
     private static $charset = 'utf8';
     private static $dsn;

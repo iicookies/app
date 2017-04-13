@@ -33,7 +33,8 @@ spl_autoload_register('ClassLoaderEx::loader');
 $C = isset($_GET['C'])?$_GET['C']:NULL;  
 $M = isset($_GET['M'])?$_GET['M']:NULL;  
   #&& class_exists($C) && method_exists($C, $M)
-if($C != NULL && $M != NULL ) {  
+if($C != NULL && $M != NULL ) {
+    $C = $C.'Controller';  
     $cObj = new $C();
     if(method_exists($C, $M)){
          $cObj->$M();  
