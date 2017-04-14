@@ -18,7 +18,7 @@
 			$card_passwd = trim($_REQUEST['card_passwd']);
 			$param = array(':card_no'=>$card_no , ':card_passwd' => $card_passwd);
 			$sql = "select card_id,card_type from card where card_no = :card_no and card_passwd = :card_passwd and status = 0";
-			$row = $this->$db_tool->queryRow($sql,$param);
+			$row = $this->db_tool->queryRow($sql,$param);
 			if($row){
 				$data = array_merge($data,$row);
 				$data['msg'] = "";
@@ -39,7 +39,7 @@
 			$uname = trim($_REQUEST['uname']);
 			$card_id = trim($_REQUEST['card_id']);
 			$card_type = trim($_REQUEST['card_type']);
-			$conn = $this->$db_tool->getConnection();
+			$conn = $this->db_tool->getConnection();
 			$conn->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
 			$conn->beginTransaction();
 			try {
