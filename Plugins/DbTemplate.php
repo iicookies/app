@@ -1,6 +1,5 @@
 <?php
-#require_once("DbConfig.php");
-require_once("DbPool.php");
+require_once("DbConfig.php");
 /**
  * 一个数据库操作工具类
  *
@@ -103,11 +102,10 @@ class DbTemplate {
         return $this->exeUpdate($sql, $parameters);
     }
 
-    public function getConnection($transaction = false) {
-        // $conn = new PDO(DbConfig::getDsn(), DbConfig::getUsername(), DbConfig::getPassword());
-        // $conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
-        // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conn = DbPool::getConn($transaction);
+    public function getConnection() {
+        $conn = new PDO(DbConfig::getDsn(), DbConfig::getUsername(), DbConfig::getPassword());
+        $conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     }
 
