@@ -7,6 +7,8 @@
  {
  	function http(){
 		$password = md5("onlyzcx");
+		$seed = time();
+		$token = $this->security->getValue($seed);
 		$data = array(
 			// 'C'=>'App',
 			// 'M'=>'version',
@@ -14,6 +16,8 @@
 			'M'=>'check',
 			'name'=>'iicookies',
 			'passwd'=> $password,
+			'seed'=>$seed,
+			'token' => $token
 		);
 		$str = http_build_query($data);
 		#echo $str;

@@ -5,7 +5,7 @@
  */
  class ProxyController extends BaseController
  {
- 	function get(){
+ 	function get(){	
 		$url = 'http://www.xdaili.cn/ipagent/freeip/getFreeIps?page=1&rows=10';
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);

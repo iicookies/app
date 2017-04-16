@@ -13,6 +13,12 @@
 
 	function getCard(){
 		$data = array('code'=>0);
+		if(!$this->security->check()){
+			$data['code'] = 1;
+			$data['msg'] = "参数错误";
+			$this->jsonOutput($data);
+			return;
+		} 
 		if (isset($_REQUEST['card_no']) && isset($_REQUEST['card_passwd'])) {
 			$card_no = trim($_REQUEST['card_no']);
 			$card_passwd = trim($_REQUEST['card_passwd']);
@@ -35,6 +41,12 @@
 
 	function recharge(){
 		$data = array('code'=>0);
+		if(!$this->security->check()){
+			$data['code'] = 1;
+			$data['msg'] = "参数错误";
+			$this->jsonOutput($data);
+			return;
+		} 		
 		if(isset($_REQUEST['uname']) && isset($_REQUEST['card_id']) && isset($_REQUEST['card_type']) ){
 			$uname = trim($_REQUEST['uname']);
 			$card_id = trim($_REQUEST['card_id']);

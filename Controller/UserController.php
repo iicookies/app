@@ -29,6 +29,12 @@ class UserController extends BaseController
 
 	function register(){
 		$data = array('code'=>0);
+		if(!$this->security->check()){
+			$data['code'] = 1;
+			$data['msg'] = "参数错误";
+			$this->jsonOutput($data);
+			return;
+		} 
 		if(isset($_REQUEST['name']) && isset($_REQUEST['passwd']) && isset($_REQUEST['expiration']) && isset($_REQUEST['serial_num'])){
 			$name = trim($_REQUEST['name']);
 			$passwd = trim($_REQUEST['passwd']);
@@ -55,6 +61,12 @@ class UserController extends BaseController
 
 	function check(){
 		$data = array('code'=>0);
+		if(!$this->security->check()){
+			$data['code'] = 1;
+			$data['msg'] = "参数错误";
+			$this->jsonOutput($data);
+			return;
+		} 
 		if(isset($_REQUEST['name']) && isset($_REQUEST['passwd'])){
 			$name = trim($_REQUEST['name']);
 			$passwd = trim($_REQUEST['passwd']);

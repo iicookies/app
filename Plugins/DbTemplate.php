@@ -115,7 +115,8 @@ class DbTemplate {
         $conn = $this->getConnection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($parameters);
-        $rs = $stmt->fetchAll();
+        $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        #$rs = $stmt->fetchAll();
         $stmt = null;
         $conn = null;
         return $rs;
