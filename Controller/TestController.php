@@ -21,7 +21,7 @@
 		);
 		$str = http_build_query($data);
 		#echo $str;
-		 $ret = $this->request_by_curl("www.mandywed.com/app/index.php",$str);
+		 $ret = $this->request_by_curl("127.0.0.1/app/index.php",$str);
 
 		 if(!empty($ret)){
 		 	//echo $ret;
@@ -45,7 +45,7 @@
 		$password = md5("#123456gugu");
 		$data = array(
 			'faceid'=>'001',
-			'param'=>"{\"phone\":\"13931996780\",\"password\":\"$password\"}",
+			'param'=>"{\"phone\":\"1393****780\",\"password\":\"$password\"}",
 		);
 		 $str = json_encode($data);
 		 $ret = $this->request_by_curl("127.0.0.1/app/?C=User&M=check",$str);

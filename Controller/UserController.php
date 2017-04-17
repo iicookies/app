@@ -16,8 +16,20 @@ class UserController extends BaseController
 				$data['code'] = 2;
 				$data['msg'] = "用户名已存在";
 			}else{
-				$data['code'] = 0;
-				$data['msg'] = "用户名不存在可以创建";
+				if(isset($_REQUEST['serial_num'])){
+					$serial_num = trim($_REQUEST['serial_num']);
+					$row1 = $this->db_tool->queryRow("select id from user where serial_num = :serial_num",array(":serial_num"=>serial_num));
+					if($row1){
+						$data['code'] = 3;
+						$data['msg'] = "用户名已存在";
+					}else{
+						$data['code'] = 0;
+						$data['msg'] = "用户名不存在可以创建";
+					}
+				}else{
+					$data['code'] = 0;
+					$data['msg'] = "用户名不存在可以创建";
+				}
 			}
 		}else{
 			$data['code'] = 1;
