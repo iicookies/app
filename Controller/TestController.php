@@ -13,7 +13,7 @@
 			// 'C'=>'App',
 			// 'M'=>'version',
 			'C'=>'User',
-			'M'=>'check',
+			'M'=>'checkName',
 			'name'=>'iicookies',
 			'passwd'=> $password,
 			'seed'=>$seed,
@@ -21,7 +21,7 @@
 		);
 		$str = http_build_query($data);
 		#echo $str;
-		 $ret = $this->request_by_curl("127.0.0.1/app/index.php",$str);
+		 $ret = $this->request_by_curl("www.mandywed.com/app/index.php",$str);
 
 		 if(!empty($ret)){
 		 	//echo $ret;
