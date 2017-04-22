@@ -51,32 +51,33 @@
 			$uname = trim($_REQUEST['uname']);
 			$card_id = trim($_REQUEST['card_id']);
 			$card_type = trim($_REQUEST['card_type']);
+			#error_log($card_type);
 			$conn = $this->db_tool->getConnection();
 			$conn->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
 			$conn->beginTransaction();
 			try {
 				$stmt = $conn->prepare("update card set status=1,uname= :uname,utime = now() where card_id = :card_id");
-		        $stmt->execute(array(':card_id' => $card_id));
-		        $affectedRows = $stmt->rowCount();
+		        $stmt->execute(array(':uname' => $uname,':card_id' => $card_id));
+		        $affected_rows = $stmt->rowCount();
 		        if(!$affected_rows)
-					throw new PDOException("失败");
-				if($card_type){
+					throw new PDOException("失败1");
+				if($card_type != null){
 					$sql = "";
 					if($card_type == "1"){
 						$sql = "update user set expiration = DATE_ADD(expiration,INTERVAL 1 YEAR) where name = :uname";
-					}else if ($card_type == "2"){
+					}else if ($card_type == "0"){
 						$sql = "update user set expiration = DATE_ADD(expiration,INTERVAL 1 MONTH) where name = :uname";
 					}else{
-						throw new PDOException("失败");
+						throw new PDOException("失败2");
 					}
 					$stmt = $conn->prepare($sql);
 			        $stmt->execute(array(':uname' => $uname));
-			        $affectedRows = $stmt->rowCount();
+			        $affected_rows = $stmt->rowCount();
 			        if(!$affected_rows)
-						throw new PDOException("失败");					
+						throw new PDOException("失败3");					
 
 				}else{
-					throw new PDOException("失败");
+					throw new PDOException("失败4");
 				}
 				$conn->commit();
 				$data['code'] = 0;
@@ -84,7 +85,7 @@
 			} catch (PDOException $e) {
 				$conn->rollback();
 				$data['code'] = 3;
-           		$data['msg'] = '系统错误';
+           		$data['msg'] = '系统错误' . $e->getMessage();
 			}
 			$conn->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
 		}else{
